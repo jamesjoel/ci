@@ -1,9 +1,8 @@
 
 			<div id="right_contant">
 				<h2>Welcome : <?php echo $this->session->userdata("name");?></h2>
-				<h3>Your Profile</h3>
+				<h3>Your Profile Pic</h3>
 				<?php
-				echo $this->session->flashdata("msg");
 				$data=$user->row_array();
 				if($data['image']=="")
 				{
@@ -15,40 +14,27 @@
 					$path=base_url("user_image/".$data['image']);
 				}
 				?>
+				<form action="" method="post" enctype="multipart/form-data">
+					
 				<table align="center" width="300">
 					<tr>
-						<td>Image</td>
+						<td>Current Image</td>
 						<td><img src="<?php echo $path;?>" height="100" width="80" /></td>
 					</tr>
 					<tr>
-						<td>Full Name</td>
-						<td><?php echo $data['full_name']; ?></td>
+						<td>Select File</td>
+						<td><input type="file" name="userfile"/></td>
 					</tr>
 					<tr>
-						<td>Email</td>
-						<td><?php echo $data['username']; ?></td>
+						<td colspan="2" align="center"><input type="submit" value="Upload" name="submit" /></td>
 					</tr>
-					<tr>
-						<td>Contact</td>
-						<td><?php echo $data['contact']; ?></td>
-					</tr>
-					<tr>
-						<td>Gender</td>
-						<td><?php echo $data['gender']; ?></td>
-					</tr>
-					<tr>
-						<td>Address</td>
-						<td><?php echo $data['address']; ?></td>
-					</tr>
-					<tr>
-						<td>City</td>
-						<td><?php echo $data['city']; ?></td>
-					</tr>
+					
 
 				</table>
-				<a href="<?php echo site_url('user/change_profile');?>">Change</a>
-				<a href="<?php echo site_url('user/profile_pic');?>">Upload Profile Pic</a>
-				<a href="<?php echo site_url('user/change_pass');?>">Change Your Password</a>
+				<?php
+				echo $this->session->flashdata("msg");
+				?>
+				</form>
 			</div>
 			<div id="left_contant">
 				<h2>SEO FEATURES</h2>
